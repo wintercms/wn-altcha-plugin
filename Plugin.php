@@ -49,6 +49,9 @@ class Plugin extends PluginBase
             if (PluginManager::instance()->hasPlugin('Winter.User')) {
                 $targets['Winter\User\Components\Account'] = ['onRegister'];
             }
+            if (PluginManager::instance()->hasPlugin('LukeTowers.EasyForms')) {
+                $targets['LukeTowers\EasyForms\Components\EasyForm'] = ['onSave'];
+            }
 
             foreach ($targets as $class => $handlers) {
                 if ($component instanceof $class && in_array($handler, $handlers, true)) {
@@ -58,9 +61,6 @@ class Plugin extends PluginBase
 
                     Altcha::instance()->verify($signature);
                 }
-
-                // Allow the component to handle the Altcha validation itself
-                return;
             }
         });
     }

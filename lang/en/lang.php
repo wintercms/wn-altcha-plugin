@@ -9,6 +9,9 @@ return [
         'altcha' => [
             'name' => 'Altcha',
             'description' => 'Adds an Altcha CAPTCHA challenge',
+            'sections' => [
+                'plugins' => 'Plugins',
+            ],
             'properties' => [
                 'fieldName' => [
                     'title' => 'Field name',
@@ -17,6 +20,10 @@ return [
                 'accountComponent' => [
                     'title' => 'Account component alias',
                     'description' => 'If using this with the User plugin, please add the Account component alias here',
+                ],
+                'easyformComponent' => [
+                    'title' => 'EasyForm component alias',
+                    'description' => 'If using this with the EasyForm plugin by Luke Towers, please add the EasyForm component alias here',
                 ],
             ],
         ],

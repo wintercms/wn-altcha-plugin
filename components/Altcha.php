@@ -14,6 +14,8 @@ use Winter\Storm\Support\Facades\Config;
  */
 class Altcha extends ComponentBase
 {
+    protected ?ComponentBase $easyFormInstance = null;
+
     public function componentDetails()
     {
         return [
@@ -33,10 +35,18 @@ class Altcha extends ComponentBase
                 'default'     => 'altcha',
             ],
             'accountComponent' => [
+                'group'       => 'winter.altcha::lang.components.altcha.sections.plugins',
                 'title'       => 'winter.altcha::lang.components.altcha.properties.accountComponent.title',
                 'description' => 'winter.altcha::lang.components.altcha.properties.accountComponent.description',
                 'type'        => 'string',
                 'default'     => 'account',
+            ],
+            'easyformComponent' => [
+                'group'       => 'winter.altcha::lang.components.altcha.sections.plugins',
+                'title'       => 'winter.altcha::lang.components.altcha.properties.easyformComponent.title',
+                'description' => 'winter.altcha::lang.components.altcha.properties.easyformComponent.description',
+                'type'        => 'string',
+                'default'     => 'easyForm',
             ],
         ];
     }
@@ -51,6 +61,27 @@ class Altcha extends ComponentBase
         }
 
         return e($this->property('accountComponent'));
+    }
+
+    /**
+     * Gets the alias of the user component to use for the Altcha widget.
+     */
+    public function easyFormAlias(): ?string
+    {
+        if (empty($this->property('easyformComponent'))) {
+            return null;
+        }
+
+        return e($this->property('easyformComponent'));
+    }
+
+    public function easyFormInstance(): ?ComponentBase
+    {
+        if ($this->easyFormInstance === null && $alias = $this->easyFormAlias()) {
+            $this->easyFormInstance = $this->controller->findComponentByName($alias);
+        }
+
+        return $this->easyFormInstance;
     }
 
     public function fieldName(): string

@@ -1,0 +1,36 @@
+{% set easyFormAlias = __SELF__.easyFormAlias %}
+{% set easyFormInstance = __SELF__.easyFormInstance %}
+
+{{ form_ajax(easyFormAlias ~ '::onSave', {'class': 'easyform-container' ~ ' easyform-form-' ~ easyFormInstance.property('form') ~ ' ' ~ easyFormInstance.property('cssClasses'), 'id': easyFormAlias}) }}
+
+    {% if easyFormInstance.error is not empty %}
+        <p>{{ easyFormInstance.error }}</p>
+    {% else %}
+        <div class="layout-row">
+            {% if easyFormInstance.property('displayTitle') %}
+                <div class="field-section form-title">
+                    <h4>{{ easyFormAlias.form.name }}</h4>
+                </div>
+            {% endif %}
+            {{ easyFormInstance.backendController.formRender() | raw }}
+        </div>
+
+        <div class="layout-row">
+            {% partial __SELF__ ~ '::default' %}
+        </div>
+
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <button
+                    type="submit"
+                    data-request="{{ easyFormAlias ~ '::onSave' }}"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="Submitting"
+                    class="btn btn-primary">
+                    Submit
+                </button>
+            </div>
+        </div>
+    {% endif %}
+
+{{ form_close() }}
