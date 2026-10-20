@@ -1,0 +1,33 @@
+{
+    "name": "winter/wn-altcha-plugin",
+    "type": "winter-plugin",
+    "description": "Provides support for the Altcha spam prevention service",
+    "homepage": "https://github.com/wintercms/wn-altcha-plugin",
+    "keywords": ["winter cms", "winter", "plugin", "user", "spam", "altcha", "captcha"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ben Thomson",
+            "email": "git@alfreido.com",
+            "role": "Original Author"
+        },
+        {
+            "name": "Winter CMS Maintainers",
+            "homepage": "https://wintercms.com",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/wintercms/wn-altcha-plugin/issues",
+        "discord": "https://discord.gg/D5MFSPH6Ux",
+        "source": "https://github.com/wintercms/wn-altcha-plugin"
+    },
+    "require": {
+        "winter/wn-backend-module": "^1.2.8 || dev-develop",
+        "composer/installers": "~1.0",
+        "altcha-org/altcha": "^2.3.0"
+    },
+    "extra": {
+        "installer-name": "altcha"
+    }
+}

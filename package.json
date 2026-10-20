@@ -1,0 +1,6 @@
+{
+    "name": "winter-altcha",
+    "dependencies": {
+        "altcha": "^3.4.1"
+    }
+}

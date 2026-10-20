@@ -1,0 +1,15 @@
+{% put head %}
+    {{ vite(['assets/src/js/winter-altcha.js'], 'winter.altcha' ) }}
+{% endput %}
+
+<altcha-widget
+	auto="off"
+	challenge="{{ __SELF__.challengeUrl }}"
+	configuration='{"delay": 500}'
+	display="standard"
+	language="en"
+	name="{{ __SELF__.fieldName }}"
+	theme="default"
+	type="checkbox"
+	workers="4"
+></altcha-widget>
