@@ -18,7 +18,7 @@ After installing the plugin you will need to run the migrations and (if you are 
 
 If you have the [Winter User plugin](https://github.com/wintercms/wn-user-plugin) installed, this plugin provides a drop-in replacement for the default registration form. You may select the page that is using the Account component, and add the Altcha component to the page.
 
-**Image**
+![Altcha component](https://raw.githubusercontent.com/wintercms/wn-altcha-plugin/refs/heads/main/.github/assets/user-plugin.png)
 
 Ensure that the **Account component alias** property in the Altcha component is set to the same alias as the Account component on the page (defaults to `account`). You must then include the Altcha widget in your page markup. If you use the default User component markup, you can simply change the `account` component to `altcha::account` in your page markup.
 
