@@ -58,3 +58,17 @@ The `verify` method will throw one of the following exceptions, depending on the
 | `Winter\Altcha\Exceptions\NoCaptchaException` | The Altcha field was not present in the form submission. |
 | `Winter\Altcha\Exceptions\InvalidPayloadException` | The Altcha field was present, but the payload sent through was invalid or could not be processed. |
 | `Winter\Altcha\Exceptions\NotVerifiedException` | The Altcha field was present and payload was valid, but the challenge was not successfully verified. |
+
+### Adding targets for other forms
+
+If you want to target other custom components, you can call the addTargets() method of the Altcha class:
+
+```php
+use Winter\Altcha\Classes\Altcha;
+
+Altcha::instance()->addTargets([
+    'Your\Custom\Component' => ['handler'],
+]);
+```
+
+You can also replace the default targets completely by using the `setTargets()` method.
