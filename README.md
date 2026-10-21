@@ -61,7 +61,7 @@ The `verify` method will throw one of the following exceptions, depending on the
 
 ### Adding targets for other forms
 
-If you want to target other custom components, you can call the addTargets() method of the Altcha class:
+If you want to target other custom components' AJAX handlers, you can call the addTargets() method of the Altcha class:
 
 ```php
 use Winter\Altcha\Classes\Altcha;
