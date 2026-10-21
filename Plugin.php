@@ -6,7 +6,6 @@ use Cms\Classes\ComponentBase;
 use Cms\Classes\Controller;
 use Override;
 use System\Classes\PluginBase;
-use System\Classes\PluginManager;
 use Winter\Altcha\Classes\Altcha;
 use Winter\Altcha\Components\Altcha as AltchaComponent;
 use Winter\Altcha\Exceptions\NoCaptchaException;
@@ -43,15 +42,8 @@ class Plugin extends PluginBase
     public function boot()
     {
         Event::listen('cms.component.beforeRunAjaxHandler', function (ComponentBase $component, string $handler) {
-            $targets = [];
+            $targets = Altcha::instance()->getTargets();
             $signature = $this->getAltchaFieldValue();
-
-            if (PluginManager::instance()->hasPlugin('Winter.User')) {
-                $targets['Winter\User\Components\Account'] = ['onRegister'];
-            }
-            if (PluginManager::instance()->hasPlugin('LukeTowers.EasyForms')) {
-                $targets['LukeTowers\EasyForms\Components\EasyForm'] = ['onSave'];
-            }
 
             foreach ($targets as $class => $handlers) {
                 if ($component instanceof $class && in_array($handler, $handlers, true)) {

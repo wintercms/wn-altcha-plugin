@@ -8,11 +8,13 @@ use AltchaOrg\Altcha\Challenge;
 use AltchaOrg\Altcha\CreateChallengeOptions;
 use AltchaOrg\Altcha\ServerSignature;
 use AltchaOrg\Altcha\VerifySolutionOptions;
+use System\Classes\PluginManager;
 use Winter\Altcha\Exceptions\InvalidPayloadException;
 use Winter\Altcha\Exceptions\NoCaptchaException;
 use Winter\Altcha\Exceptions\NotVerifiedException;
 use Winter\Storm\Support\Facades\Config;
 use Winter\Storm\Support\Traits\Singleton;
+
 
 final class Altcha
 {
@@ -22,6 +24,8 @@ final class Altcha
 
     protected ?BaseAltcha $altcha = null;
 
+    protected array $targets = [];
+
     /**
      * Initialize the singleton free from constructor parameters.
      */
@@ -29,6 +33,30 @@ final class Altcha
     {
         $this->pbkdf2 = new Pbkdf2();
         $this->altcha = new BaseAltcha($this->getSecret());
+
+        $targets = [];
+        if (PluginManager::instance()->hasPlugin('Winter.User')) {
+            $targets['Winter\User\Components\Account'] = ['onRegister'];
+        }
+        if (PluginManager::instance()->hasPlugin('LukeTowers.EasyForms')) {
+            $targets['LukeTowers\EasyForms\Components\EasyForm'] = ['onSave'];
+        }
+        $this->setTargets($targets);
+    }
+
+    public function getTargets()
+    {
+        return $this->targets;
+    }
+
+    public function setTargets(array $targets)
+    {
+        $this->targets = $targets;
+    }
+
+    public function addTargets(array $targets)
+    {
+        array_push($this->targets, ...$targets);
     }
 
     public function getChallenge(): Challenge
