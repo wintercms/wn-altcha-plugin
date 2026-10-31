@@ -1,5 +1,9 @@
 # Altcha plugin
 
+![Altcha Plugin Banner](https://github.com/wintercms/wn-altcha-plugin/blob/main/.github/banner.png?raw=true)
+
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wintercms/wn-altcha-plugin/blob/main/LICENSE)
+
 This plugin provides support for the [ALTCHA](https://altcha.org/) anti-spam service, helping to prevent form spam and bot registration on your Winter CMS install. By default, this plugin works with the User plugin to protect the user registration form, but can be extended to any Winter CMS plugin.
 
 ## Installation

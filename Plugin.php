@@ -26,10 +26,14 @@ class Plugin extends PluginBase
             'name' => 'winter.altcha::lang.plugin.name',
             'description' => 'winter.altcha::lang.plugin.description',
             'author' => 'Ben Thomson',
-            'icon' => 'icon-search'
+            'icon' => 'icon-shield-halved'
         ];
     }
 
+
+    /**
+     * Registers the components provided by this plugin.
+     */
     #[Override]
     public function registerComponents()
     {
@@ -38,6 +42,9 @@ class Plugin extends PluginBase
         ];
     }
 
+    /**
+     * Boot the plugin
+     */
     #[Override]
     public function boot()
     {
@@ -57,6 +64,9 @@ class Plugin extends PluginBase
         });
     }
 
+    /**
+     * Gets the name of the Altcha field.
+     */
     protected function getAltchaField(): ?string
     {
         $controller = Controller::getController();
@@ -76,6 +86,9 @@ class Plugin extends PluginBase
         return null;
     }
 
+    /**
+     * Gets the value of the Altcha field.
+     */
     protected function getAltchaFieldValue(): ?string
     {
         $field = $this->getAltchaField();

@@ -44,6 +44,9 @@ class Altcha extends ComponentBase
         ];
     }
 
+    /**
+     * Returns the properties provided by the component
+     */
     #[Override]
     public function defineProperties()
     {
@@ -134,6 +137,9 @@ class Altcha extends ComponentBase
         return e($this->property('easyformComponent'));
     }
 
+    /**
+     * Gets the instance of the EasyForm component.
+     */
     public function easyFormInstance(): ?ComponentBase
     {
         if ($this->easyFormInstance === null && $alias = $this->easyFormAlias()) {
@@ -143,6 +149,9 @@ class Altcha extends ComponentBase
         return $this->easyFormInstance;
     }
 
+    /**
+     * Gets the field name for the Altcha widget.
+     */
     public function fieldName(): string
     {
         return implode('_', [
@@ -151,6 +160,9 @@ class Altcha extends ComponentBase
         ]);
     }
 
+    /**
+     * Gets the URL for the Altcha challenge endpoint.
+     */
     public function challengeUrl(): string
     {
         return Url::to(
