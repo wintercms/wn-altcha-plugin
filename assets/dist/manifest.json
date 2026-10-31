@@ -1,8 +1,11 @@
 {
   "assets/src/js/winter-altcha.js": {
-    "file": "winter-altcha-C73Kh9Kw.js",
+    "file": "winter-altcha-BUVx-B2L.js",
     "name": "winter-altcha",
     "src": "assets/src/js/winter-altcha.js",
-    "isEntry": true
+    "isEntry": true,
+    "css": [
+      "winter-altcha-BKiXVg11.css"
+    ]
   }
 }

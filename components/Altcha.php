@@ -16,6 +16,26 @@ class Altcha extends ComponentBase
 {
     protected ?ComponentBase $easyFormInstance = null;
 
+    /**
+     * The language of the Altcha challenge.
+     */
+    public ?string $language = null;
+
+    /**
+     * The theme of the Altcha challenge.
+     */
+    public ?string $theme = null;
+    
+    /**
+     * The type of the Altcha challenge.
+     */
+    public ?string $type = null;
+
+    /**
+     * The display mode of the Altcha challenge.
+     */
+    public ?string $displayMode = null;
+
     public function componentDetails()
     {
         return [
@@ -34,6 +54,34 @@ class Altcha extends ComponentBase
                 'type'        => 'string',
                 'default'     => 'altcha',
             ],
+            'language' => [
+                'title'       => 'winter.altcha::lang.components.altcha.properties.language.title',
+                'description' => 'winter.altcha::lang.components.altcha.properties.language.description',
+                'type'        => 'dropdown',
+                'options'     => 'winter.altcha::lang.options.captcha_languages',
+                'default'     => 'detect',
+            ],
+            'theme' => [
+                'title'       => 'winter.altcha::lang.components.altcha.properties.theme.title',
+                'description' => 'winter.altcha::lang.components.altcha.properties.theme.description',
+                'type'        => 'dropdown',
+                'options'     => 'winter.altcha::lang.options.captcha_themes',
+                'default'     => 'default',
+            ],
+            'type' => [
+                'title'       => 'winter.altcha::lang.components.altcha.properties.type.title',
+                'description' => 'winter.altcha::lang.components.altcha.properties.type.description',
+                'type'        => 'dropdown',
+                'options'     => 'winter.altcha::lang.options.captcha_types',
+                'default'     => 'checkbox',
+            ],
+            'displayMode' => [
+                'title'       => 'winter.altcha::lang.components.altcha.properties.displayMode.title',
+                'description' => 'winter.altcha::lang.components.altcha.properties.displayMode.description',
+                'type'        => 'dropdown',
+                'options'     => 'winter.altcha::lang.options.captcha_display_modes',
+                'default'     => 'standard',
+            ],
             'accountComponent' => [
                 'group'       => 'winter.altcha::lang.components.altcha.sections.plugins',
                 'title'       => 'winter.altcha::lang.components.altcha.properties.accountComponent.title',
@@ -49,6 +97,17 @@ class Altcha extends ComponentBase
                 'default'     => 'easyForm',
             ],
         ];
+    }
+
+    /**
+     * Executed when this component is bound to a page or layout.
+     */
+    public function onRun()
+    {
+        $this->language = $this->property('language');
+        $this->theme = $this->property('theme');
+        $this->type = $this->property('type');
+        $this->displayMode = $this->property('displayMode');
     }
 
     /**

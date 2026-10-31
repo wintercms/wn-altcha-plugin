@@ -72,3 +72,51 @@ Altcha::instance()->addTargets([
 ```
 
 You can also replace the default targets completely by using the `setTargets()` method.
+
+## Component properties
+
+The Altcha component has the following properties:
+
+| Property | Description |
+| -------- | ----------- |
+| `fieldName` | The name of the Altcha field sent via POST. |
+| `language` | The language of the Altcha challenge, or set to "Detect language" to automatically detect based on the HTML lang attribute or browser settings. |
+| `theme` | The theme of the Altcha challenge. |
+| `type` | The type of the Altcha challenge. |
+| `displayMode` | The display mode of the Altcha challenge. |
+| `accountComponent` | The alias of the Account component if used with the User plugin. |
+| `easyformComponent` | The alias of the EasyForm component if used with the EasyForm plugin. |
+
+## Widget customization
+
+You can customize the appearance and behavior of the Altcha widget by using the component properties described above. For example, you can set the language, theme, type, and display mode to match your site's design and user experience requirements.
+
+In addition, you can use custom CSS to further style the widget according to your needs.
+
+```css
+/* Example custom CSS for the Altcha widget */
+altcha-widget {
+    --altcha-checkbox-border-width: 1.5px;                                      /* Width of the checkbox border */
+    --altcha-color-base: oklch(36.993% 0.14552 265.614);                        /* Base color of the widget */
+    --altcha-color-base-content: oklch(96.183% 0.0235 227.909);                 /* Content color for the base */
+    --altcha-color-neutral: oklch(46.768% 0.15756 266.404);                     /* Neutral color of the widget */
+    --altcha-color-neutral-content: var(--altcha-color-base-content);           /* Content color for the neutral color */
+    --altcha-color-primary: oklch(60.683% 0.10883 309.763);                     /* Primary color of the widget */
+    --altcha-color-primary-content: oklch(96.014% 0.0162 293.609);              /* Content color for the primary color */
+    --altcha-border-color: light-dark(
+        oklch(27.079% 0.14584 265.379), 
+        oklch(46.768% 0.15756 266.404)
+    );                                                                          /* Border color of the widget */
+    --altcha-input-background-color: light-dark(
+        oklch(100% 0.00011 271.152),
+        oklch(25.197% 0.00003 271.152)
+    );                                                                          /* Background color of input fields */
+    --altcha-input-color: light-dark(
+        oklch(27.07 9% 0.14584 265.379), 
+        oklch(96.014% 0.0162 293.609)
+    );                                                                          /* Text color of input fields */
+    --altcha-switch-background-color: var(--altcha-input-background-color);     /* Background color of switch elements */
+    --altcha-checkbox-border-color: var(--altcha-color-neutral);                /* Border color of checkboxes */
+    --altcha-spinner-color: var(--altcha-color-base-content);                   /* Color of the spinner */
+}
+```

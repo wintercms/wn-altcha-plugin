@@ -6,10 +6,12 @@
 	auto="off"
 	challenge="{{ __SELF__.challengeUrl }}"
 	configuration='{"delay": 500}'
-	display="standard"
-	language="en"
+	display="{{ __SELF__.displayMode }}"
+{% if __SELF__.language != 'detect' %}
+	language="{{ __SELF__.language }}"
+{% endif %}
 	name="{{ __SELF__.fieldName }}"
-	theme="default"
-	type="checkbox"
+	theme="{{ __SELF__.theme }}"
+	type="{{ __SELF__.type }}"
 	workers="4"
 ></altcha-widget>

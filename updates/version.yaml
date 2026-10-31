@@ -1,1 +1,4 @@
 1.0.0: Initial version of Altcha plugin.
+1.0.1: Add support for LukeTowers.EasyForms.
+1.1.0: Make targets extensible.
+1.1.1: Add localization and customisation options for the Altcha widget.
