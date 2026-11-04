@@ -15,15 +15,26 @@ use Winter\Altcha\Exceptions\NotVerifiedException;
 use Winter\Storm\Support\Facades\Config;
 use Winter\Storm\Support\Traits\Singleton;
 
-
+/**
+ * The Altcha class provides a singleton instance for managing Altcha challenges and verification.
+ */
 final class Altcha
 {
     use Singleton;
 
+    /**
+     * The PBKDF2 algorithm instance.
+     */
     protected ?Pbkdf2 $pbkdf2 = null;
 
+    /**
+     * The Altcha instance.
+     */
     protected ?BaseAltcha $altcha = null;
 
+    /**
+     * The targets for Altcha.
+     */
     protected array $targets = [];
 
     /**
@@ -44,30 +55,58 @@ final class Altcha
         $this->setTargets($targets);
     }
 
+    /**
+     * Gets the current targets for Altcha.
+     *
+     * @return array
+     */
     public function getTargets()
     {
         return $this->targets;
     }
 
+    /**
+     * Sets the targets for Altcha.
+     *
+     * @param array $targets The targets to set.
+     */
     public function setTargets(array $targets)
     {
         $this->targets = $targets;
     }
 
+    /**
+     * Adds a single target to the existing targets.
+     *
+     * @param array $targets The targets to add to the existing targets.
+     */
     public function addTargets(array $targets)
     {
         array_push($this->targets, ...$targets);
     }
 
+    /**
+     * Gets a new Altcha challenge.
+     */
     public function getChallenge(): Challenge
     {
-        return $this->altcha->createChallenge(new CreateChallengeOptions(
-            algorithm: $this->pbkdf2,
-            cost: 10000,
-            expiresAt: now()->addHours(2),
-        ));
+        return $this->altcha->createChallenge(
+            new CreateChallengeOptions(
+                algorithm: $this->pbkdf2,
+                cost: 10000,
+                expiresAt: now()->addHours(2),
+            )
+        );
     }
 
+    /**
+     * Verifies the Altcha solution.
+     *
+     * @param string $payload
+     * @throws NoCaptchaException
+     * @throws InvalidPayloadException
+     * @throws NotVerifiedException
+     */
     public function verify(string $payload): void
     {
         $decoded = base64_decode($payload, true);
@@ -104,8 +143,13 @@ final class Altcha
         }
     }
 
+    /**
+     * Gets the secret key for Altcha.
+     *
+     * @return string
+     */
     protected function getSecret(): string
     {
-        return Config::get('winter.altcha::altcha.secretKey', Config::get('app.key'));
+        return Config::get('winter.altcha::secretKey', Config::get('app.key'));
     }
 }
