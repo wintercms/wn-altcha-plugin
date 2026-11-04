@@ -6,7 +6,7 @@ use Winter\Altcha\Classes\Altcha;
 use Winter\Storm\Support\Facades\Config;
 
 Route::group([
-    'prefix' => Config::get('winter.altcha::altcha.apiPrefix', 'winter/altcha/api'),
+    'prefix' => Config::get('winter.altcha::apiPrefix', 'winter/altcha/api'),
     'middleware' => 'web',
 ], function () {
     Route::get('/challenge', function () {
