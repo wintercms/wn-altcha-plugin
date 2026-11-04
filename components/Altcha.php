@@ -111,6 +111,8 @@ class Altcha extends ComponentBase
         $this->theme = $this->property('theme');
         $this->type = $this->property('type');
         $this->displayMode = $this->property('displayMode');
+
+        $this->addVite('assets/src/js/winter-altcha.js', 'winter.altcha');
     }
 
     /**
