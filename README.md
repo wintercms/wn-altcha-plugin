@@ -24,8 +24,8 @@ The plugin can be configured via the environment variables in your `.env` file:
 ALTCHA_API_PREFIX="winter/altcha/api"
 ALTCHA_SECRET_KEY="your-secret-key"
 ```
-By choosing a personalized API prefix (`ALTCHA_API_PREFIX`) you enforce security by making it harder for attackers to guess the endpoint for the Altcha API.  
-The `ALTCHA_SECRET_KEY` should be a strong, unique key that is kept secret, as it is used to sign and verify Altcha challenges. If the key is missing, the plugin will fall back to using the application's key (`app.key`).
+
+The `ALTCHA_SECRET_KEY` should be a strong, unique key that is kept secret, as it is used to sign and verify Altcha challenges. If the key is missing or empty, the plugin will fall back to using the application's key (`app.key`).
 
 ## Usage
 

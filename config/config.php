@@ -7,8 +7,8 @@ return [
      | API Prefix
      |--------------------------------------------------------------------------
      |
-     | The API prefix for Altcha endpoints.
-     | You can override the value by setting ALTCHA_API_PREFIX in your environment.
+     | The API prefix for Altcha endpoints. You can override the value by
+     | setting ALTCHA_API_PREFIX in your environment.
      |
      */
 
@@ -19,11 +19,11 @@ return [
      | Secret Key
      |--------------------------------------------------------------------------
      |
-     | The secret key for Altcha.
-     | You can override the value by setting ALTCHA_SECRET_KEY in your environment.
+     | The secret key for Altcha. You can override the value by setting
+     | ALTCHA_SECRET_KEY in your environment.
      |
-     | If no secret key is provided in the environment, Altcha will use the 
-     | application key (APP_KEY) from project the environment.
+     | If no secret key is provided, Altcha will use the application key
+     | (APP_KEY) from your environment.
      |
      */
 

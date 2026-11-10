@@ -16,7 +16,8 @@ use Winter\Storm\Support\Facades\Config;
 use Winter\Storm\Support\Traits\Singleton;
 
 /**
- * The Altcha class provides a singleton instance for managing Altcha challenges and verification.
+ * The Altcha class provides a singleton instance for managing Altcha challenges
+ * and verification.
  */
 final class Altcha
 {
@@ -28,17 +29,21 @@ final class Altcha
     protected ?Pbkdf2 $pbkdf2 = null;
 
     /**
-     * The Altcha instance.
+     * The vendor Altcha instance.
      */
     protected ?BaseAltcha $altcha = null;
 
     /**
-     * The targets for Altcha.
+     * List of plugin classes, and their respective methods, that will
+     * automatically be hooked into for Altcha verification. The key is the
+     * plugin class, and the value is an array of methods to hook into.
+     *
+     * @var array<string, string[]>
      */
     protected array $targets = [];
 
     /**
-     * Initialize the singleton free from constructor parameters.
+     * Initialize the singleton.
      */
     protected function init()
     {
@@ -56,9 +61,10 @@ final class Altcha
     }
 
     /**
-     * Gets the current targets for Altcha.
+     * Gets the current targeted plugin classes and methods for Altcha
+     * verification.
      *
-     * @return array
+     * @return array<string, string[]>
      */
     public function getTargets()
     {
@@ -66,9 +72,11 @@ final class Altcha
     }
 
     /**
-     * Sets the targets for Altcha.
+     * Sets the targeted plugin classes and methods for Altcha verification.
      *
-     * @param array $targets The targets to set.
+     * @param array<string, string[]> $targets The targets to set. You must provide a key-value
+     * array where the key is the plugin class and the value is an
+     * array of methods to hook into.
      */
     public function setTargets(array $targets)
     {
@@ -76,13 +84,21 @@ final class Altcha
     }
 
     /**
-     * Adds a single target to the existing targets.
+     * Appends additional targeted plugin classes and methods for Altcha
+     * verification.
      *
-     * @param array $targets The targets to add to the existing targets.
+     * @param array<string, string[]> $targets The targets to add to the existing targets.
      */
     public function addTargets(array $targets)
     {
-        array_push($this->targets, ...$targets);
+        foreach ($targets as $class => $methods) {
+            if (!isset($this->targets[$class])) {
+                $this->targets[$class] = [];
+            }
+            $this->targets[$class] = array_unique(
+                array_merge($this->targets[$class], $methods)
+            );
+        }
     }
 
     /**
@@ -100,7 +116,10 @@ final class Altcha
     }
 
     /**
-     * Verifies the Altcha solution.
+     * Verifies an Altcha challenge against a provided payload.
+     *
+     * This method will check the provided payload to ensure that it is a valid
+     * Altcha challenge, and then verify the solution against the challenge.
      *
      * @param string $payload
      * @throws NoCaptchaException
