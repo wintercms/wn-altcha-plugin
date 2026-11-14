@@ -16,6 +16,17 @@ composer require winter/wn-altcha-plugin
 
 After installing the plugin you will need to run the migrations and (if you are using a [public folder](https://wintercms.com/docs/develop/docs/setup/configuration#using-a-public-folder)) [republish your public directory](https://wintercms.com/docs/develop/docs/console/setup-maintenance#mirror-public-files).
 
+## Configuration
+
+The plugin can be configured via the environment variables in your `.env` file:
+
+```env
+ALTCHA_API_PREFIX="winter/altcha/api"
+ALTCHA_SECRET_KEY="your-secret-key"
+```
+
+The `ALTCHA_SECRET_KEY` should be a strong, unique key that is kept secret, as it is used to sign and verify Altcha challenges. If the key is missing or empty, the plugin will fall back to using the application's key (`app.key`).
+
 ## Usage
 
 ### With the User plugin

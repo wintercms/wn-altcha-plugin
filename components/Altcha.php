@@ -168,7 +168,7 @@ class Altcha extends ComponentBase
     public function challengeUrl(): string
     {
         return Url::to(
-            rtrim(Config::get('winter.altcha::altcha.apiPrefix', 'winter/altcha/api'), '/')
+            rtrim(Config::get('winter.altcha::apiPrefix', 'winter/altcha/api'), '/')
             . '/challenge'
         );
     }
