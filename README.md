@@ -102,22 +102,6 @@ The Altcha component has the following properties:
 | `accountComponent` | The alias of the Account component if used with the User plugin. |
 | `easyformComponent` | The alias of the EasyForm component if used with the EasyForm plugin. |
 
-## Tests
-
-From the Winter CMS project root, run:
-
-```shell
-php artisan winter:test --plugin Winter.Altcha
-```
-
-Two known-failure tests are skipped by default. To run them, set the environment
-variable `ALTCHA_TEST_KNOWN_FAILURES=1` before running the command:
-
-- The `verificationData` test assumes the plugin's secret signs the payload.
-  Whether this format should be supported and which secret to use need confirmation.
-- The `OPTIONS` route is declared to return 204 but is currently overridden by
-  the fallback route and returns 404.
-
 ## Widget customization
 
 You can customize the appearance and behavior of the Altcha widget by using the component properties described above. For example, you can set the language, theme, type, and display mode to match your site's design and user experience requirements.
