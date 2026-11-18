@@ -53,11 +53,9 @@ class ApiTest extends AltchaTestCase
 
     public function testOptionsRouteReturnsNoContent(): void
     {
-        if (getenv('ALTCHA_TEST_KNOWN_FAILURES') !== '1') {
-            $this->markTestSkipped('The fallback route currently overrides the OPTIONS route.');
-        }
-
         $response = $this->app['router']->dispatch(Request::create('/custom/api/challenge', 'OPTIONS'));
+
         $this->assertSame(204, $response->getStatusCode());
+        $this->assertSame('', $response->getContent());
     }
 }
