@@ -13,10 +13,6 @@ Route::group([
         return response()->json(Altcha::instance()->getChallenge());
     });
 
-    Route::options('/{any?}', function () {
-       return response('', 204);
-    });
-
     Route::any('/{any?}', function () {
         return response()->json([
             'api' => [
@@ -26,5 +22,9 @@ Route::group([
                 'message' => 'Invalid API request.',
             ],
         ], 404);
+    });
+
+    Route::options('/{any?}', function () {
+       return response('', 204);
     });
 });
