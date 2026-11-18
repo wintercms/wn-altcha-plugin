@@ -89,20 +89,29 @@ class AltchaTest extends AltchaTestCase
         $this->assertSame(['onTest'], $targets[AltchaComponent::class]);
     }
 
-    public function testServerSignatureVerificationRequiresAnAgreedSigningKey(): void
+    private function serverSignaturePayload(string $secret): array
     {
-        if (getenv('ALTCHA_TEST_KNOWN_FAILURES') !== '1') {
-            $this->markTestSkipped('Pending a decision on verificationData support and its signing key.');
-        }
-
         $verificationData = 'verified=true&expire=' . (time() + 60);
-        $payload = [
+        return [
             'algorithm' => 'SHA-256',
             'verificationData' => $verificationData,
-            'signature' => hash_hmac('sha256', hash('sha256', $verificationData, true), self::SECRET),
+            'signature' => hash_hmac('sha256', hash('sha256', $verificationData, true), $secret),
             'verified' => true,
         ];
+    }
+
+    public function testValidServerSignatureUsesConfiguredSecret(): void
+    {
+        $payload = $this->serverSignaturePayload(self::SECRET);
 
         $this->assertNull(Altcha::instance()->verify($this->encode($payload)));
+    }
+
+    public function testServerSignatureSignedWithAnotherSecretIsRejected(): void
+    {
+        $payload = $this->serverSignaturePayload('different-secret');
+
+        $this->expectException(NotVerifiedException::class);
+        Altcha::instance()->verify($this->encode($payload));
     }
 }

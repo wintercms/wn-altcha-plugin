@@ -142,7 +142,7 @@ final class Altcha
 
         try {
             if (isset($payload['verificationData'])) {
-                $result = ServerSignature::verifyServerSignature($payload, $hmacSecret);
+                $result = ServerSignature::verifyServerSignature($payload, $this->getSecret());
                 $verified = $result->verified;
             } elseif (isset($payload['challenge'], $payload['solution'])) {
                 $result = $this->altcha->verifySolution(new VerifySolutionOptions(
